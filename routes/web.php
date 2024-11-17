@@ -48,8 +48,9 @@ Route::group(['middleware'=> 'auth'], function(){
 
 //admin routes
 
-Route::group(['middlware'=>'admin'], function(){
-    Route::get('admin/dashboard', [DashboardController::class, 'index'])->middleware('admin')->name('admin.dashboard');
+Route::group(['middlware'=>'admin', 'prefix' =>'admin', 'as' =>'admin.'], function(){
+    Route::get('dashboard', [DashboardController::class, 'index'])->middleware('admin')->name('dashboard');
+    // 'prefix' =>'admin', 'as' =>'admin.' prefix== admin/dashbord and as== admin.dashbord==> this iis name
 
 });
 
