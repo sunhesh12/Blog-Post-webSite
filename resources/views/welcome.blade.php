@@ -18,7 +18,7 @@
         </nav>
       </div> --> 
 
-       <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+       <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark mt-5">
         <div class="col-md-6 px-0">
           <h1 class="display-4 font-italic">Title of a longer featured blog post</h1>
           <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.</p>
@@ -26,24 +26,27 @@
         </div>
       </div>
 
-      <div class="row mb-2">
-        @foreach ($posts as $post )
-        <div class="col-md-6">
-          <div class="card flex-md-row mb-4 box-shadow h-md-250">
-            <div class="card-body d-flex flex-column align-items-start">
-              <img src="{{asset('thumbnail/' . $post->thumbnail)}}" class="img-thumbnail" alt="Thumbnail"/>
-              <!-- <strong class="d-inline-block mb-2 text-primary">World</strong> -->
-              <h3 class="mb-0">
-                <a class="text-dark" href="#">{{$post->title}}</a>
-              </h3>
-              <div class="mb-1 text-muted">{{date('y-m-d', strtotime($post->created_at))}}</div>
-              <p class="card-text mb-auto">{{$post -> description}}</p>
-              <a href="{{route('posts.show',$post->id)}}">Continue reading</a>
-            </div>
-            <!-- <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="Card image cap"> -->
+
+      <div class="row row-cols-1 row-cols-md-3 g-4 mt-5">
+      @foreach ($posts as $post)
+
+      <div class="col">
+        <div class="card h-100">
+          <img src="{{ asset('thumbnail/' . $post->thumbnail) }}" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;" alt="Thumbnail">
+          <div class="card-body">
+            <h5 class="card-title">
+              <a href="#" class="text-dark text-decoration-none">{{ $post->title }}</a>
+            </h5>
+            <p class="card-text text-muted">{{ date('y-m-d', strtotime($post->created_at)) }}</p>
+            <p class="card-text">{{ $post->description }}</p>
+          </div>
+          <div class="card-footer bg-transparent border-top-0">
+            <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary btn-sm">Continue reading</a>
           </div>
         </div>
-        @endforeach
+      </div>
 
+
+      @endforeach
 
 @endsection

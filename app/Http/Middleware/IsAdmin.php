@@ -19,14 +19,19 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->IsAdmin()){
-            //redirect to admin page
-            return $next($request);
+        if(auth()->user()){
+            if(Auth::user()->IsAdmin()){
+                //redirect to admin page
+                return $next($request);
+            }else{
+                return back();
+                // redirect(route('admin.dashboard'));
+                //redirectto user page
+            }
         }else{
             return back();
-            // redirect(route('admin.dashboard'));
-            //redirectto user page
         }
+
         
     }
 }

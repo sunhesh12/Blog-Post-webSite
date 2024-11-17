@@ -28,22 +28,31 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//post
-Route::post('/post/store',[PostController::class,'store'])->name('posts.store');
 
+//post
 Route::get('/post/{postId}/show',[PostController::class,'show'])->name('posts.show');
 
-Route::get('/post/all',[HomeController::class,'allPost'])->name('posts.all');
+Route::group(['middleware'=> 'auth'], function(){
+    Route::post('/post/store',[PostController::class,'store'])->name('posts.store');
+    
+    Route::get('/post/all',[HomeController::class,'allPost'])->name('posts.all');
+    
+    Route::get('/post/{postId}/edit',[PostController::class,'edit'])->name('posts.edit');
+    
+    Route::post('/post/{postId}/update',[PostController::class,'update'])->name('posts.update');
+    
+    Route::get('/post/{postId}/delete',[PostController::class,'delete'])->name('posts.delete');
+});
 
-Route::get('/post/{postId}/edit',[PostController::class,'edit'])->name('posts.edit');
-
-Route::post('/post/{postId}/update',[PostController::class,'update'])->name('posts.update');
-
-Route::get('/post/{postId}/delete',[PostController::class,'delete'])->name('posts.delete');
 
 
 //admin routes
-Route::get('admin/dashboard', [DashboardController::class, 'index'])->middleware('admin')->name('admin.dashboard');
+
+Route::group(['middlware'=>'admin'], function(){
+    Route::get('admin/dashboard', [DashboardController::class, 'index'])->middleware('admin')->name('admin.dashboard');
+
+});
+
 
 
 
