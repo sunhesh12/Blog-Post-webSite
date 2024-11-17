@@ -15,4 +15,10 @@ class post extends Model
         'description',
         'thumbnail',
     ];
+
+
+    public function user(){
+
+        return $this->belongsTo(User::class,'user_Id');
+    }
 }

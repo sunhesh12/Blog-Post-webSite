@@ -37,7 +37,7 @@
             <h5 class="card-title">
               <a href="#" class="text-dark text-decoration-none">{{ $post->title }}</a>
             </h5>
-            <p class="card-text text-muted">{{ date('y-m-d', strtotime($post->created_at)) }}</p>
+            <p class="card-text text-muted">{{$post->User->name}} | {{ date('y-m-d', strtotime($post->created_at)) }}</p>
             <p class="card-text">{{ $post->description }}</p>
           </div>
           <div class="card-footer bg-transparent border-top-0">
