@@ -31,6 +31,7 @@
         <div class="col-md-6">
           <div class="card flex-md-row mb-4 box-shadow h-md-250">
             <div class="card-body d-flex flex-column align-items-start">
+              <img src="{{asset('thumbnail/' . $post->thumbnail)}}" class="img-thumbnail" alt="Thumbnail"/>
               <!-- <strong class="d-inline-block mb-2 text-primary">World</strong> -->
               <h3 class="mb-0">
                 <a class="text-dark" href="#">{{$post->title}}</a>

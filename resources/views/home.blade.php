@@ -13,7 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <form method="post" action="{{route('posts.store')}}">
+                    <form method="post" action="{{route('posts.store')}}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label>Post Title</label>
@@ -24,7 +24,10 @@
                             <textarea rows="10"  type="text" name="description" class="form-control mt-2" placeholder="Enter post description" required></textarea>
                             
                         </div>
-
+                        <div class="form-group mt-2">
+                            <label>Uplode Your Image</label>
+                            <input class="form-control" type="file" name="thumbnail"/>
+                        </div>
                         <button type="submit" class="btn btn-primary mt-2">Post</button>
                     </form>
                     <!-- {{ __('You are logged in!') }} -->
